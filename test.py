@@ -10,7 +10,7 @@ def print_hello():
 dag = DAG(
     'simple_print_dag',  # Tên DAG
     description='A simple DAG that prints Hello',
-    schedule_interval=None,  # DAG này chỉ chạy khi được trigger thủ công
+    schedule_interval=timedelta(days=1),  # DAG này chỉ chạy khi được trigger thủ công
     start_date=datetime(2023, 9, 9),  # Ngày bắt đầu DAG
     catchup=False,  # Không thực hiện catchup cho những ngày đã qua
 )
