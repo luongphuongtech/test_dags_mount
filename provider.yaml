@@ -1,0 +1,24 @@
+name: "Trino OAuth2 Provider"
+description: "Custom Trino connection with OAuth2 support"
+versions:
+  - "1.0.0"
+
+hooks:
+  - name: TrinoOAuth2Hook
+    connection-types:
+      - conn-type: trino
+        hook-class-name: trino_oauth2_hook.TrinoOAuth2Hook
+        connection-form-fields:
+          - field-name: token_url
+            field-type: string
+            label: "OAuth2 Token URL"
+          - field-name: scope
+            field-type: string
+            label: "OAuth2 Scope"
+          - field-name: schema
+            field-type: string
+            label: "Trino Schema"
+
+operators:
+  - name: TrinoOAuth2Operator
+    operator-class-name: trino_oauth2_operator.TrinoOAuth2Operator
