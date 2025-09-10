@@ -1,6 +1,6 @@
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
-from airflow.operators.python import PythonOperator
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 
 # Hàm Python đơn giản sẽ được gọi bởi PythonOperator
