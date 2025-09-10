@@ -15,7 +15,7 @@ dag = DAG(
 
 sql_query = "SHOW CATALOGS"
 
-run_trino_sql = TrinoOAuth2Operator(
+run_trino_sql =TrinoOAuth2Operator(
     task_id='run_trino_sql_task',
     sql=sql_query,
     trino_conn_id='trino_default_oauth2',  # Sử dụng kết nối Trino đã được tạo trong Airflow UI
