@@ -1,11 +1,16 @@
 from airflow import DAG
-from airflow.operators.dummy_operator import DummyOperator
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 # Hàm Python đơn giản sẽ được gọi bởi PythonOperator
-def hello_world():
+def start_task():
+    print("Starting the DAG...")
+
+def hello_task():
     print("Hello, world! This is a simple Airflow DAG.")
+
+def end_task():
+    print("Ending the DAG...")
 
 # Định nghĩa các tham số DAG
 default_args = {
@@ -24,24 +29,24 @@ dag = DAG(
     schedule=timedelta(days=1),  # Chạy mỗi ngày
 )
 
-# Tác vụ bắt đầu (dummy task)
-start_task = DummyOperator(
-    task_id='start',
+# Tạo các tác vụ PythonOperator
+start_task_operator = PythonOperator(
+    task_id='start_task',
+    python_callable=start_task,
     dag=dag,
 )
 
-# Tác vụ in thông báo
-hello_task = PythonOperator(
+hello_task_operator = PythonOperator(
     task_id='hello_task',
-    python_callable=hello_world,
+    python_callable=hello_task,
     dag=dag,
 )
 
-# Tác vụ kết thúc (dummy task)
-end_task = DummyOperator(
-    task_id='end',
+end_task_operator = PythonOperator(
+    task_id='end_task',
+    python_callable=end_task,
     dag=dag,
 )
 
 # Xác định thứ tự thực thi các tác vụ
-start_task >> hello_task >> end_task
+start_task_operator >> hello_task_operator >> end_task_operator
