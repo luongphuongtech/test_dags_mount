@@ -1,6 +1,6 @@
 from datetime import datetime
 from airflow import DAG
-from trino_oauth2_operator import TrinoOAuth2Operator
+from trino_oauth2_operator import TrinoOAuth2Operator3
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
