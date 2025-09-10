@@ -1,6 +1,6 @@
 from datetime import datetime
 from airflow import DAG
-from airflow.providers.trino.operators.trino import TrinoOperator
+from airflow.providers.amazon.aws.operators.s3 import S3FileOperator, S3FileTransferOperator
 
 # Định nghĩa DAG
 with DAG(
