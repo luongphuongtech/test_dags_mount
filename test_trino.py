@@ -1,25 +1,20 @@
-from datetime import datetime
-from airflow import DAG
-from trino_oauth2_operator import TrinoOAuth2Operator
-from airflow import DAG
-from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
+from airflow import DAG
+from trino_oauth2_operator import TrinoOAuth2Operator  # import operator bạn đã tạo
 
-dag = DAG(
-    'trino_oauth2_test_dag',
-    description='Test Trino OAuth2 Hook và Operator',
+with DAG(
+    dag_id="test_trino_oauth2_show_catalogs",
+    description="DAG test TrinoOAuth2Operator với lệnh SHOW CATALOGS",
+    start_date=datetime(2024, 1, 1),
     schedule=timedelta(days=1),
-    start_date=datetime(2023, 9, 10),
     catchup=False,
-)
+    tags=["trino", "oauth2", "test"]
+) as dag:
 
-sql_query = "SHOW CATALOGS"
+    show_catalogs = TrinoOAuth2Operator(
+        task_id="show_trino_catalogs",
+        sql="SHOW CATALOGS",  # câu lệnh Trino
+        trino_conn_id="trino_default_oauth2"
+    )
 
-run_trino_sql =TrinoOAuth2Operator(
-    task_id='run_trino_sql_task',
-    sql=sql_query,
-    trino_conn_id='trino_default_oauth2',  # Sử dụng kết nối Trino đã được tạo trong Airflow UI
-    dag=dag
-)
-
-run_trino_sql
+    show_catalogs
