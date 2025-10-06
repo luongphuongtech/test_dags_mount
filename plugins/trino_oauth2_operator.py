@@ -20,15 +20,6 @@ class TrinoOAuth2Operator(BaseOperator):
         rows = cursor.fetchall()
         self.log.info("Query result: %s", rows)
         return rows
-class HelloOperator(BaseOperator):
-    def __init__(self, name: str, **kwargs) -> None:
-        super().__init__(**kwargs)
-        self.name = name
-
-    def execute(self, context):
-        message = f"Hello {self.name}"
-        print(message)
-        return message
 
 class TrinoOAuth2OperatorPlugin(AirflowPlugin):
     name = "trino_oauth2_operator"
