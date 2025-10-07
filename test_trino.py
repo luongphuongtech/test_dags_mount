@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from test_plugin import HelloOperator  # import operator bạn đã tạo
+from trino_oauth2_operator import TrinoOAuth2Operator  # import operator bạn đã tạo
 
 with DAG(
     dag_id="test_trino_oauth2_show_catalogs",
