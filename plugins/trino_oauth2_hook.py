@@ -40,8 +40,8 @@ class TrinoOAuth2Hook(BaseHook):
         
         host = conn.host
         port = conn.port or 8080  
-        catalog = extras.get("catalog", "hive")
-        schema = extras.get("schema", "default")
+        catalog = extras.get("catalog", "tpch")
+        schema = extras.get("schema", "information_schema")
 
         
         ssl_context = ssl.create_default_context()
