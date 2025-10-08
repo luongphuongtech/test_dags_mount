@@ -13,7 +13,7 @@ with DAG(
 
     show_catalogs = TrinoOAuth2Operator(
         task_id="show_trino_catalogs",
-        sql="show catalogs",  # câu lệnh Trino
+        sql="show schemas from tpch",  # câu lệnh Trino
         trino_conn_id="trino_default_oauth2"
     )
 
