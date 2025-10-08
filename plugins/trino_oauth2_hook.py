@@ -53,8 +53,8 @@ class TrinoOAuth2Hook(BaseHook):
         conn = trino.dbapi.connect(
             host=host,
             port=port,
-            http_scheme="https",  
-            auth=JWTAuthentication(access_token),
+            http_scheme="https",  # hoặc "http" nếu môi trường dev
+            auth=BasicAuthentication(user, password),
             catalog=catalog,
             schema=schema,
             http_headers={},
