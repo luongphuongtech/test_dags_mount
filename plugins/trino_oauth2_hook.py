@@ -47,7 +47,7 @@ class TrinoOAuth2Hook(BaseHook):
         ssl_context = ssl.create_default_context()
         ssl_context.check_hostname = False
         ssl_context.verify_mode = ssl.CERT_NONE
-        user = "admin"
+        user = "test"
         password = "12345678"
      
         conn = trino.dbapi.connect(
