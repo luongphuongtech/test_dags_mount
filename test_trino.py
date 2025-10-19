@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.providers.trino.hooks.trino import TrinoHook
 from airflow.operators.python import PythonOperator
 
-def run_trino_query(**context):
+def run_trino_query():
     """Hàm chạy SQL query bằng TrinoHook"""
     hook = TrinoHook(trino_conn_id="trino_default_oauth2")
     sql = "SHOW CATALOGS"
@@ -23,6 +23,5 @@ with DAG(
     show_catalogs = PythonOperator(
         task_id="run_show_catalogs",
         python_callable=run_trino_query,
-        provide_context=True,
     )
     show_catalogs
