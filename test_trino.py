@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.providers.trino.hooks.trino import TrinoHook
+from airflow.operators.python import PythonOperator
 
 def run_trino_query(**context):
     """Hàm chạy SQL query bằng TrinoHook"""
